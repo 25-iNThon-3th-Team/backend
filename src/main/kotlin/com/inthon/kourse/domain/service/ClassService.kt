@@ -80,7 +80,7 @@ class ClassService(
                 end = slot["end"] ?: periodStrToTime(slot["time_slot"] ?: "").second,
                 location = slot["location"] ?: "",
                 startSlot = periodStrToSlot(slot["time_slot"] ?: "")[0],
-                endSlot = periodStrToSlot(slot["time_slot"] ?: "")[1],
+                endSlot = periodStrToSlot(slot["time_slot"] ?: "").last(),
             )
         }
 
