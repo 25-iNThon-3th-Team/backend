@@ -11,6 +11,6 @@ interface ChatRoomRepository : JpaRepository<ChatRoom, Long> {
     @Query("SELECT cr FROM ChatRoom cr WHERE cr.sender.id = :senderId ORDER BY cr.lastMessageAt DESC")
     fun findBySenderIdOrderByLastMessageAtDesc(@Param("senderId") senderId: Long): List<ChatRoom>
 
-    @Query("SELECT cr FROM ChatRoom cr WHERE (cr.sender.id = :user1Id AND cr.retriever.id = :retrieverId)")
+    @Query("SELECT cr FROM ChatRoom cr WHERE (cr.sender.id = :senderId AND cr.retriever.id = :retrieverId)")
     fun findByTwoUsers(@Param("senderId") senderId: Long, @Param("retrieverId") retrieverId: Long): ChatRoom?
 }

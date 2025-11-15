@@ -18,6 +18,12 @@ data class TimetableView(
     val updatedAt: OffsetDateTime
 )
 
+data class TimetableSuggestionView(
+    val totalCredits: Int,
+    val classes: List<ClassView>,
+    val score: Double
+)
+
 data class TimetableCreateRequest(
     val name: String,
     val grade: Short,

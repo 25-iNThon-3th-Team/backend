@@ -145,12 +145,11 @@ CREATE TABLE TimetableClass (
 -- 8. ChatRoom (1-on-1 chat rooms)
 CREATE TABLE chat_room (
     id BIGSERIAL PRIMARY KEY,
-    user1_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    user2_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    sender BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    retriever BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP NOT NULL DEFAULT now(),
     last_message_at TIMESTAMP NOT NULL DEFAULT now(),
-    UNIQUE(user1_id, user2_id),
-    CHECK (user1_id < user2_id)
+    UNIQUE(sender, retriever)
 );
 
 -- 9. ChatMessage (messages in chat rooms)
@@ -171,7 +170,7 @@ CREATE INDEX idx_graduation_requirement_major ON graduation_requirement(major_id
 CREATE INDEX idx_track_major ON track(major_id);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_users_major_code ON users(major_code);
-CREATE INDEX idx_chat_room_user1 ON chat_room(user1_id);
-CREATE INDEX idx_chat_room_user2 ON chat_room(user2_id);
+CREATE INDEX idx_chat_room_user1 ON chat_room(sender);
+CREATE INDEX idx_chat_room_user2 ON chat_room(retriever);
 CREATE INDEX idx_chat_message_room ON chat_message(room_id);
 CREATE INDEX idx_chat_message_sent_at ON chat_message(sent_at);
