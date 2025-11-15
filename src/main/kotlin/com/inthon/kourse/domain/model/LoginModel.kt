@@ -1,6 +1,6 @@
 package com.inthon.kourse.domain.model
 
 data class LoginRequest(
-    val username: String,
+    val userid: String,
     val password: String,
 )

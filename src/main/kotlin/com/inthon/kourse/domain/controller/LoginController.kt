@@ -37,7 +37,7 @@ class LoginController(
         httpServletResponse: HttpServletResponse
     ) =
         try {
-            val token = UsernamePasswordAuthenticationToken(request.username, request.password)
+            val token = UsernamePasswordAuthenticationToken(request.userid, request.password)
             val authentication = authenticationManager.authenticate(token)
 
             val context = SecurityContextHolder.getContext()
