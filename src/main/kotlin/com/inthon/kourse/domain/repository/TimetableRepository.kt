@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository
 interface TimetableRepository : JpaRepository<Timetable, Long> {
     fun findByUser(user: User): List<Timetable>
     fun findByUserAndIsActive(user: User, isActive: Boolean): Timetable?
-    fun findByUserAndGradeAndSemester(user: User, grade: Short, semester: String): List<Timetable>
+    fun findByUserAndYearAndSemester(user: User, year: String, semester: String): List<Timetable>
 }

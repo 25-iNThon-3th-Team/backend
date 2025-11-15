@@ -43,12 +43,12 @@ class TimetableController(
     @GetMapping("/me/semester")
     fun getMyTimetablesBySemester(
         @AuthenticationPrincipal principal: CustomUserDetails,
-        @RequestParam grade: Short,
+        @RequestParam year: String,
         @RequestParam semester: String
     ): ResponseEntity<List<TimetableView>> {
         val timetables = timetableService.getTimetablesByUserAndSemester(
             principal.getUser().id,
-            grade,
+            year,
             semester
         )
         return ResponseEntity.ok(timetables)

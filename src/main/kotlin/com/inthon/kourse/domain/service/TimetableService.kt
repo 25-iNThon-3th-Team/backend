@@ -42,10 +42,10 @@ class TimetableService(
         return timetable?.let { toTimetableView(it) }
     }
 
-    fun getTimetablesByUserAndSemester(userId: Long, grade: Short, semester: String): List<TimetableView> {
+    fun getTimetablesByUserAndSemester(userId: Long, year: String, semester: String): List<TimetableView> {
         val user = userRepository.findByIdOrNull(userId)
             ?: throw NoSuchElementException("User not found with id: $userId")
-        return timetableRepository.findByUserAndGradeAndSemester(user, grade, semester)
+        return timetableRepository.findByUserAndYearAndSemester(user, year, semester)
             .map { toTimetableView(it) }
     }
 
