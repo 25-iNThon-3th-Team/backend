@@ -1,6 +1,7 @@
 package com.inthon.kourse.domain.entity
 
 import com.inthon.kourse.common.entity.BaseEntity
+import com.inthon.kourse.common.entity.TimestampedEntity
 import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -61,4 +62,4 @@ data class User(
     @Column(name = "priority_order", columnDefinition = "jsonb")
     val priorityOrder: List<String>? = null
 
-) : BaseEntity()
+) : TimestampedEntity()

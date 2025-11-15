@@ -11,14 +11,4 @@ import java.util.UUID
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class BaseEntity() : PrimaryKeyEntity<UUID>(UUID.randomUUID()) {
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    var createdAt: LocalDateTime? = null
-        protected set
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    var lastModifiedAt: LocalDateTime? = null
-        protected set
-}
+abstract class BaseEntity() : PrimaryKeyEntity<UUID>(UUID.randomUUID())
