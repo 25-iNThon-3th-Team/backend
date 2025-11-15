@@ -52,7 +52,7 @@ class LoginController(
                 )
             )
         } catch (e: BadCredentialsException) {
-            ResponseEntity.status(401).build<Any>()
+            ResponseEntity.status(401).body(e.message)
         } catch (e: Exception) {
             ResponseEntity.status(500).build<Any>()
         }
