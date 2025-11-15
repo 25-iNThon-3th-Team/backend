@@ -25,7 +25,7 @@ class User(
 
     @Type(JsonType::class)
     @Column(columnDefinition = "jsonb")
-    var roles: List<String> = listOf("USER"),
+    var roles: List<String> = listOf(),
 
     // 1. Grade / Semester
     @Column(name = "grade")

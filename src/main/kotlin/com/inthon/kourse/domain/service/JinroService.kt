@@ -12,7 +12,7 @@ class JinroService (
     val domainMapper: DomainMapper
 ){
 
-    fun getJinroPath(userId: Long) {
+    fun getJinroPath(userId: Long): List<TrackView> {
         val tracks = trackCourseRepository.findAll().groupBy {
             it.track
         }.mapValues { it.value.map { track -> track.course} }
@@ -27,7 +27,7 @@ class JinroService (
             track to tookCount.toDouble() / courseList.size
         }.toMap()
 
-        tracks.map { (track, courseList) ->
+        return tracks.map { (track, courseList) ->
             TrackView(
                 track.id,
                 track.name,

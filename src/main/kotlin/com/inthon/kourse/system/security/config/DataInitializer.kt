@@ -17,33 +17,31 @@ class DataInitializer {
     ): CommandLineRunner {
         return CommandLineRunner {
             // Create sample users if the database is empty
-            if (userRepository.count() == 0L) {
-                // Admin user
-                userRepository.save(
-                    User(
-                        userId = "admin",
-                        username = "admin",
-                        password = passwordEncoder.encode("admin123"),
-                        enabled = true,
-                        roles = listOf("ROLE_USER", "ROLE_ADMIN")
-                    )
+            // Admin user
+            userRepository.save(
+                User(
+                    userId = "admin",
+                    username = "admin",
+                    password = passwordEncoder.encode("admin123"),
+                    enabled = true,
+                    roles = listOf("ROLE_USER", "ROLE_ADMIN")
                 )
+            )
 
-                // Regular user
-                userRepository.save(
-                    User(
-                        userId = "user",
-                        username = "user",
-                        password = passwordEncoder.encode("user123"),
-                        enabled = true,
-                        roles = listOf("ROLE_USER")
-                    )
+            // Regular user
+            userRepository.save(
+                User(
+                    userId = "user",
+                    username = "user",
+                    password = passwordEncoder.encode("user123"),
+                    enabled = true,
+                    roles = listOf("ROLE_USER")
                 )
+            )
 
-                println("Sample users created:")
-                println("- admin/admin123 (ADMIN)")
-                println("- user/user123 (USER)")
-            }
+            println("Sample users created:")
+            println("- admin/admin123 (ADMIN)")
+            println("- user/user123 (USER)")
         }
     }
 }

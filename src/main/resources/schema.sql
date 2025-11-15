@@ -17,7 +17,7 @@ CREATE TABLE users (
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     enabled BOOLEAN NOT NULL DEFAULT TRUE,
-    roles JSONB DEFAULT '["USER"]',
+    roles JSONB DEFAULT JSON '["USER"]',
 
     -- Grade / Semester
     grade SMALLINT,
