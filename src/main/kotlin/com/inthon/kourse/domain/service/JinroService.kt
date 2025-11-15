@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.service
 
 import com.inthon.kourse.common.DomainMapper
+import com.inthon.kourse.domain.entity.TrackCourse
+import com.inthon.kourse.domain.model.CourseView
 import com.inthon.kourse.domain.model.TrackView
 import com.inthon.kourse.domain.repository.TrackCourseRepository
 import org.springframework.stereotype.Service
@@ -39,4 +41,9 @@ class JinroService (
 
     }
 
+    fun getTakenCourse(userId: Long) =
+        timetableClassService.getTookCourseFromTable(userId).map { domainMapper.toView(it) }
+
+    fun getTakenClass(userId: Long) =
+        timetableClassService.
 }

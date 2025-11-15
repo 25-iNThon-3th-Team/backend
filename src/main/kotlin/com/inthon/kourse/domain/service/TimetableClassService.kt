@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class TimetableClassService(
-    val timetableClassRepository: TimetableClassRepository,
-    val userService: UserService,
+    private val timetableClassRepository: TimetableClassRepository,
+    private val userService: UserService,
 ) {
 
     fun getTimetableClassByUserId(userId: Long) = timetableClassRepository.findAllByUser(userId)
 
     fun getTookCourseFromTable(userId: Long) = timetableClassRepository.findCoursesByUser(userId)
-
 }
