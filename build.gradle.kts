@@ -13,6 +13,9 @@ group = "com.inthon"
 version = "0.0.1-SNAPSHOT"
 description = "2025 iNThon 3th Team Backend"
 
+extra["springAiVersion"] = "1.1.0"
+
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
@@ -42,6 +45,16 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    implementation("org.springframework.ai:spring-ai-starter-model-chat-memory")
+    implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+    }
 }
 
 kotlin {

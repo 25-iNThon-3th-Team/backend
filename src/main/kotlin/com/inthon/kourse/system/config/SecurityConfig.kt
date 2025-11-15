@@ -42,7 +42,9 @@ class SecurityConfig {
                 authorize("/swagger-ui.html", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
                 authorize("/api-docs/**", permitAll)
-                authorize(anyRequest, authenticated)
+                authorize("/api/ai/**", permitAll)
+                // TODO Authenticate not allowed endpoints
+                authorize(anyRequest, permitAll)
             }
             formLogin { disable() }
             httpBasic { disable() }
