@@ -34,7 +34,8 @@ class TimetableGenerationService(
             TimetableSuggestionView(
                 totalCredits = it.totalCredits,
                 classes = it.classes,
-                score = it.totalScore
+                score = it.totalScore,
+                note = preference.additionalNotes
             )
         }
     }

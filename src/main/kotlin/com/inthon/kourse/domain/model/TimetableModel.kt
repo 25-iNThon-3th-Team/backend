@@ -22,7 +22,8 @@ data class TimetableView(
 data class TimetableSuggestionView(
     val totalCredits: Int,
     val classes: List<ClassView>,
-    val score: Double
+    val score: Double,
+    val note: String?
 )
 
 data class TimetableCreateRequest(
