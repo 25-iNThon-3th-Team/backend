@@ -70,6 +70,7 @@ class UserService(
 
         user.apply {
             username = request.username ?: user.username
+            password = user.password
             grade = request.grade ?: user.grade
             semester = request.semester ?: user.semester
             majorCode = request.majorCode ?: user.majorCode
