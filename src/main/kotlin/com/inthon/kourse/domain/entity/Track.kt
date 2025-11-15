@@ -10,11 +10,11 @@ import jakarta.persistence.*
 data class Track(
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "major_id", nullable = false)
-    val major: Major,
+    var major: Major,
 
     @Column(nullable = false, length = 255)
-    val name: String,
+    var name: String,
 
     @Column(columnDefinition = "TEXT")
-    val description: String? = null
+    var description: String? = null
 ) : BaseEntity()

@@ -90,7 +90,7 @@ class TimetableService(
             ?: throw NoSuchElementException("Timetable not found with id: $id")
 
         // Handle class list update if provided
-        val totalCredits = if (request.classIds != null) {
+        var totalCredits = if (request.classIds != null) {
             // Remove all existing classes
             timetableClassRepository.deleteByTimetableId(id)
 
@@ -109,24 +109,15 @@ class TimetableService(
             timetable.totalCredits
         }
 
-        val updatedTimetable = Timetable(
-            user = timetable.user,
-            name = request.name ?: timetable.name,
-            grade = request.grade ?: timetable.grade,
-            semester = request.semester ?: timetable.semester,
-            totalCredits = totalCredits,
-            isActive = request.isActive ?: timetable.isActive,
-            createdAt = timetable.createdAt,
-            updatedAt = OffsetDateTime.now()
-        ).apply {
-            (this as com.inthon.kourse.common.entity.PrimaryKeyEntity<Long>).javaClass
-                .getDeclaredField("id").apply {
-                    isAccessible = true
-                    set(this@apply, id)
-                }
+        timetable.apply {
+            name = request.name ?: timetable.name
+            grade = request.grade ?: timetable.grade
+            semester = request.semester ?: timetable.semester
+            this.totalCredits = totalCredits
+            isActive = request.isActive ?: timetable.isActive
         }
 
-        val saved = timetableRepository.save(updatedTimetable)
+        val saved = timetableRepository.save(timetable)
         return toTimetableView(saved)
     }
 

@@ -11,8 +11,8 @@ import jakarta.persistence.Table
 @Table(name = "major")
 data class Major(
     @Column(unique = true, nullable = false, length = 100)
-    val code: String,
+    var code: String,
 
     @Column(nullable = false, length = 255)
-    val name: String
+    var name: String
 ) : BaseEntity()

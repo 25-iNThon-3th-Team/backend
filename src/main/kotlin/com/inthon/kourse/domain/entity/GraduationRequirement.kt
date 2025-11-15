@@ -15,14 +15,14 @@ import jakarta.persistence.*
 data class GraduationRequirement(
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "major_id", nullable = false)
-    val major: Major,
+    var major: Major,
 
     @Column(name = "admission_year", nullable = false)
-    val admissionYear: Int,
+    var admissionYear: Int,
 
     @Column(name = "credit_type", nullable = false, length = 50)
-    val creditType: String,
+    var creditType: String,
 
     @Column(name = "required_credits", nullable = false)
-    val requiredCredits: Int
+    var requiredCredits: Int
 ) : BaseEntity()

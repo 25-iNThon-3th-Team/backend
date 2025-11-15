@@ -37,6 +37,15 @@ class ClassService(
         return classRepository.findByProfessorName(professorName).map { toClassView(it) }
     }
 
+    private fun periodStrToSlot(periodStr: String): List<Int> {
+        if (periodStr.indexOf('-') == -1) {
+            return listOf(periodStr.toIntOrNull() ?: -1)
+        } else {
+            val split = periodStr.split('-')
+            return listOf(split[0].toInt(), split[1].toInt())
+        }
+    }
+
     private fun periodStrToTime(periodStr: String): Pair<String, String> {
         if (periodStr.indexOf('-') == -1) {
             return periodToTime(periodStr.toIntOrNull() ?: -1)
@@ -69,7 +78,9 @@ class ClassService(
                 day = slot["day"] ?: "",
                 start = slot["start"] ?: periodStrToTime(slot["time_slot"] ?: "").first,
                 end = slot["end"] ?: periodStrToTime(slot["time_slot"] ?: "").second,
-                location = slot["location"] ?: ""
+                location = slot["location"] ?: "",
+                startSlot = periodStrToSlot(slot["time_slot"] ?: "")[0],
+                endSlot = periodStrToSlot(slot["time_slot"] ?: "")[1],
             )
         }
 

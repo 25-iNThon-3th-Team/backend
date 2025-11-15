@@ -16,26 +16,26 @@ import java.time.OffsetDateTime
 data class Timetable(
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User,
+    var user: User,
 
     @Column(nullable = false, length = 255)
-    val name: String,
+    var name: String,
 
     @Column(nullable = false)
-    val grade: Short,
+    var grade: Short,
 
     @Column(nullable = false)
-    val semester: Short,
+    var semester: Short,
 
     @Column(name = "total_credits", nullable = false)
-    val totalCredits: Int = 0,
+    var totalCredits: Int = 0,
 
     @Column(name = "is_active", nullable = false)
-    val isActive: Boolean = false,
+    var isActive: Boolean = false,
 
     @Column(name = "created_at", nullable = false)
-    val createdAt: OffsetDateTime = OffsetDateTime.now(),
+    var createdAt: OffsetDateTime = OffsetDateTime.now(),
 
     @Column(name = "updated_at", nullable = false)
-    val updatedAt: OffsetDateTime = OffsetDateTime.now()
+    var updatedAt: OffsetDateTime = OffsetDateTime.now()
 ) : BaseEntity()

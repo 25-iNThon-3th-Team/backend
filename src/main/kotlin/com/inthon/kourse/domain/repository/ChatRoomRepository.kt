@@ -1,0 +1,16 @@
+package com.inthon.kourse.domain.repository
+
+import com.inthon.kourse.domain.entity.ChatRoom
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
+import org.springframework.stereotype.Repository
+
+@Repository
+interface ChatRoomRepository : JpaRepository<ChatRoom, Long> {
+    @Query("SELECT cr FROM ChatRoom cr WHERE cr.sender.id = :senderId ORDER BY cr.lastMessageAt DESC")
+    fun findBySenderIdOrderByLastMessageAtDesc(@Param("senderId") senderId: Long): List<ChatRoom>
+
+    @Query("SELECT cr FROM ChatRoom cr WHERE (cr.sender.id = :user1Id AND cr.retriever.id = :retrieverId)")
+    fun findByTwoUsers(@Param("senderId") senderId: Long, @Param("retrieverId") retrieverId: Long): ChatRoom?
+}
