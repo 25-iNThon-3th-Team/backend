@@ -44,6 +44,4 @@ class JinroService (
     fun getTakenCourse(userId: Long) =
         timetableClassService.getTookCourseFromTable(userId).map { domainMapper.toView(it) }
 
-    fun getTakenClass(userId: Long) =
-        timetableClassService.
 }
