@@ -9,7 +9,21 @@ import org.springframework.stereotype.Component
 public object DomainMapperImpl : DomainMapper {
   @GeneratedKonverter(priority = 5_000)
   override fun toView(user: User): UserView = UserView(
+    id = user.id,
     username = user.username,
-    id = user.id
+    enabled = user.enabled,
+    roles = user.roles,
+    grade = user.grade,
+    semester = user.semester,
+    majorCode = user.majorCode,
+    creditsMajorRequired = user.creditsMajorRequired,
+    creditsMajorElective = user.creditsMajorElective,
+    creditsGeneral = user.creditsGeneral,
+    preferredOffDays = user.preferredOffDays,
+    preferredTimeSlot = user.preferredTimeSlot,
+    maxTransferMinutes = user.maxTransferMinutes,
+    priorityOrder = user.priorityOrder,
+    createdAt = user.createdAt,
+    lastModifiedAt = user.lastModifiedAt
   )
 }

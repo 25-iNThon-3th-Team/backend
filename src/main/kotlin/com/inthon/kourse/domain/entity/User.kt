@@ -1,13 +1,11 @@
 package com.inthon.kourse.domain.entity
 
 import com.inthon.kourse.common.entity.BaseEntity
-import jakarta.persistence.CollectionTable
+import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.Column
-import jakarta.persistence.ElementCollection
 import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.JoinColumn
 import jakarta.persistence.Table
+import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "users")
@@ -22,8 +20,45 @@ data class User(
     @Column(nullable = false)
     val enabled: Boolean = true,
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_roles", joinColumns = [JoinColumn(name = "user_id")])
-    @Column(name = "role")
-    val roles: Set<String> = setOf("ROLE_USER")
+    @Type(JsonType::class)
+    @Column(columnDefinition = "jsonb")
+    val roles: List<String> = listOf("USER"),
+
+    // 1. Grade / Semester
+    @Column(name = "grade")
+    val grade: Short? = null,
+
+    @Column(name = "semester")
+    val semester: Short? = null,
+
+    // 2. Major selection
+    @Column(name = "major_code", length = 100)
+    val majorCode: String? = null,
+
+    // 3. Current credits
+    @Column(name = "credits_major_required", nullable = false)
+    val creditsMajorRequired: Int = 0,
+
+    @Column(name = "credits_major_elective", nullable = false)
+    val creditsMajorElective: Int = 0,
+
+    @Column(name = "credits_general", nullable = false)
+    val creditsGeneral: Int = 0,
+
+    // 4. Time constraints
+    @Type(JsonType::class)
+    @Column(name = "preferred_off_days", columnDefinition = "jsonb")
+    val preferredOffDays: List<String>? = null,
+
+    @Column(name = "preferred_time_slot", length = 10)
+    val preferredTimeSlot: String = "NONE",
+
+    @Column(name = "max_transfer_minutes")
+    val maxTransferMinutes: Short = 20,
+
+    // 5. Priority settings
+    @Type(JsonType::class)
+    @Column(name = "priority_order", columnDefinition = "jsonb")
+    val priorityOrder: List<String>? = null
+
 ) : BaseEntity()

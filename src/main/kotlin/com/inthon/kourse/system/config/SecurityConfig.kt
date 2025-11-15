@@ -2,7 +2,6 @@ package com.inthon.kourse.system.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -36,7 +35,13 @@ class SecurityConfig {
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.IF_REQUIRED }
             authorizeHttpRequests {
                 authorize("/login", permitAll)
+                authorize("/register", permitAll)
                 authorize("/logout", permitAll)
+                authorize("/h2-console/**", permitAll)
+                authorize("/swagger-ui/**", permitAll)
+                authorize("/swagger-ui.html", permitAll)
+                authorize("/v3/api-docs/**", permitAll)
+                authorize("/api-docs/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             formLogin { disable() }

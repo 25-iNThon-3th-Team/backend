@@ -24,7 +24,7 @@ class DataInitializer {
                         username = "admin",
                         password = passwordEncoder.encode("admin123"),
                         enabled = true,
-                        roles = setOf("ROLE_USER", "ROLE_ADMIN")
+                        roles = listOf("ROLE_USER", "ROLE_ADMIN")
                     )
                 )
 
@@ -34,7 +34,7 @@ class DataInitializer {
                         username = "user",
                         password = passwordEncoder.encode("user123"),
                         enabled = true,
-                        roles = setOf("ROLE_USER")
+                        roles = listOf("ROLE_USER")
                     )
                 )
 

@@ -63,11 +63,4 @@ class LoginController(
 
     }
 
-    @GetMapping("/who-am-i")
-    fun whoAmI(
-        @AuthenticationPrincipal principal: UserDetails?,
-    ): ResponseEntity<*> {
-        if (principal == null) return ResponseEntity.status(401).body(mapOf("message" to "You are not logged in"))
-        return ResponseEntity.ok(domainMapper.toView((principal as CustomUserDetails).getUser()))
-    }
 }
