@@ -38,10 +38,16 @@ class DataInitializer {
                     roles = listOf("ROLE_USER")
                 )
             )
-
+            val users = userRepository.findAll()
+            users.forEach {
+                it.password = passwordEncoder.encode("admin123")
+                userRepository.save(it)
+            }
             println("Sample users created:")
             println("- admin/admin123 (ADMIN)")
             println("- user/user123 (USER)")
+
+
         }
     }
 }

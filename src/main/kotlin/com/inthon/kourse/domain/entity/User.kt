@@ -18,7 +18,7 @@ class User(
     var username: String,
 
     @Column(nullable = false)
-    val password: String,
+    var password: String,
 
     @Column(nullable = false)
     var enabled: Boolean = true,
