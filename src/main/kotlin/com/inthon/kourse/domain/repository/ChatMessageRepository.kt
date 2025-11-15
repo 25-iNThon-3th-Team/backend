@@ -19,7 +19,7 @@ interface ChatMessageRepository : JpaRepository<ChatMessage, Long> {
     fun findMessagesSince(@Param("room") room: ChatRoom, @Param("since") since: OffsetDateTime): List<ChatMessage>
 
     @Modifying
-    @Query("UPDATE ChatMessage cm SET cm.isRead = true WHERE cm.room = :room AND cm.sender != :userId AND cm.isRead = false")
+    @Query("UPDATE ChatMessage cm SET cm.isRead = true WHERE cm.room = :room AND cm.sender.id != :userId AND cm.isRead = false")
     fun markMessagesAsRead(@Param("room") room: ChatRoom, @Param("userId") userId: Long): Int
 
     fun countByRoomAndIsReadFalse(room: ChatRoom): Long
