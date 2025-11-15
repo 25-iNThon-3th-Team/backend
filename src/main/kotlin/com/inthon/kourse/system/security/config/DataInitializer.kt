@@ -21,6 +21,7 @@ class DataInitializer {
                 // Admin user
                 userRepository.save(
                     User(
+                        userId = "admin",
                         username = "admin",
                         password = passwordEncoder.encode("admin123"),
                         enabled = true,
@@ -31,6 +32,7 @@ class DataInitializer {
                 // Regular user
                 userRepository.save(
                     User(
+                        userId = "user",
                         username = "user",
                         password = passwordEncoder.encode("user123"),
                         enabled = true,

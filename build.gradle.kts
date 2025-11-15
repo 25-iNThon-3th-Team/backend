@@ -44,8 +44,10 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:3.6.1")
+    implementation("com.linecorp.kotlin-jdsl:jpql-render:3.6.1")
+    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:3.6.1")
     implementation("org.springframework.ai:spring-ai-starter-model-chat-memory")
     implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
 

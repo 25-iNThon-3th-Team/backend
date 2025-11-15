@@ -16,7 +16,7 @@ class CustomUserDetailsService(
             throw UsernameNotFoundException("Username cannot be null")
         }
 
-        val user = userRepository.findByUsername(username)
+        val user = userRepository.findByUserId(username)
             ?: throw UsernameNotFoundException("User not found with username: $username")
 
         return CustomUserDetails(user)

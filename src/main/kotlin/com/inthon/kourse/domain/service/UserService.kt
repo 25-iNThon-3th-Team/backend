@@ -9,7 +9,6 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
 
 @Service
 @Transactional
@@ -19,11 +18,12 @@ class UserService(
 ) {
 
     fun createUser(request: UserCreateRequest): UserView {
-        if (userRepository.findByUsername(request.username) != null) {
+        if (userRepository.findByUserId(request.userId) != null) {
             throw IllegalArgumentException("Username already exists")
         }
 
         val user = User(
+            userId = request.userId,
             username = request.username,
             password = passwordEncoder.encode(request.password),
             enabled = true,
@@ -53,7 +53,7 @@ class UserService(
 
     @Transactional(readOnly = true)
     fun getUserByUsername(username: String): UserView {
-        val user = userRepository.findByUsername(username)
+        val user = userRepository.findByUserId(username)
             ?: throw NoSuchElementException("User not found with username: $username")
         return toUserView(user)
     }
@@ -70,7 +70,6 @@ class UserService(
 
         user.apply {
             username = request.username ?: user.username
-            password = user.password
             grade = request.grade ?: user.grade
             semester = request.semester ?: user.semester
             majorCode = request.majorCode ?: user.majorCode

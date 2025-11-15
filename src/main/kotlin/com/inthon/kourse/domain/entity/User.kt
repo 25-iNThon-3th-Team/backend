@@ -1,6 +1,5 @@
 package com.inthon.kourse.domain.entity
 
-import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.TimestampedEntity
 import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.Column
@@ -10,13 +9,16 @@ import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "users")
-data class User(
+class User(
 
     @Column(unique = true, nullable = false)
+    var userId: String,
+
+    @Column(nullable = false)
     var username: String,
 
     @Column(nullable = false)
-    var password: String,
+    val password: String,
 
     @Column(nullable = false)
     var enabled: Boolean = true,

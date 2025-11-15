@@ -31,6 +31,7 @@ data class SimpleUserView(
 )
 
 data class UserCreateRequest(
+    val userId: String,
     val username: String,
     val password: String,
     val grade: Short? = null,
