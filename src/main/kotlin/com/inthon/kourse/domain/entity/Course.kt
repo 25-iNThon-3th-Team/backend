@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.entity
 
+import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.PrimaryKeyEntity
+import io.hypersistence.tsid.TSID
 import jakarta.persistence.*
 import java.math.BigDecimal
 
@@ -31,4 +33,4 @@ data class Course(
 
     @Column(name = "easiness_score", precision = 3, scale = 2)
     val easinessScore: BigDecimal = BigDecimal("3.0")
-) : PrimaryKeyEntity<Long>(0L)
+) : BaseEntity()

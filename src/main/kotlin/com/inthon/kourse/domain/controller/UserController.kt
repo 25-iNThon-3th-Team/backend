@@ -31,7 +31,7 @@ class UserController(
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable id: UUID): ResponseEntity<UserView> {
+    fun getUserById(@PathVariable id: Long): ResponseEntity<UserView> {
         return try {
             val user = userService.getUserById(id)
             ResponseEntity.ok(user)
@@ -58,7 +58,7 @@ class UserController(
 
     @PutMapping("/{id}")
     fun updateUser(
-        @PathVariable id: UUID,
+        @PathVariable id: Long,
         @RequestBody request: UserUpdateRequest
     ): ResponseEntity<UserView> {
         return try {
@@ -70,7 +70,7 @@ class UserController(
     }
 
     @DeleteMapping("/{id}")
-    fun deleteUser(@PathVariable id: UUID): ResponseEntity<Void> {
+    fun deleteUser(@PathVariable id: Long): ResponseEntity<Void> {
         return try {
             userService.deleteUser(id)
             ResponseEntity.noContent().build()

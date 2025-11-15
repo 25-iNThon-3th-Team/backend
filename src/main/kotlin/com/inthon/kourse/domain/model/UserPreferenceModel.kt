@@ -10,8 +10,8 @@ data class UserSchedulePreference(
     val maxCredits: Int = 18,
     val preferredDays: List<String> = emptyList(),
     val avoidDays: List<String> = emptyList(),
-    val preferredTimeSlots: List<String> = emptyList(), // e.g., ["MORNING", "AFTERNOON", "EVENING"]
-    val avoidTimeSlots: List<String> = emptyList(),
+    val preferredTimeSlots: List<Int> = emptyList(), // e.g., ["MORNING", "AFTERNOON", "EVENING"]
+    val avoidTimeSlots: List<Int> = emptyList(),
     val maxClassesPerDay: Int = 4,
     val preferConsecutiveClasses: Boolean = false,
     val prioritizeMajorRequired: Boolean = true,

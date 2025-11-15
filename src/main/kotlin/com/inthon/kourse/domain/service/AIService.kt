@@ -324,9 +324,27 @@ class AIService(
                - Maximum classes per day
 
             3. **Time Preferences:**
-               - Preferred time slots: MORNING (before 12:00), AFTERNOON (12:00-18:00), EVENING (after 18:00)
+               - Preferred time slots 
                - Time slots to avoid
+               - Available Slots
+                 * Slot 0(8:00~8:50) 
+                 * Slot 1(9:00~10:15) 
+                 * Slot 2(10:30~11:45) 
+                 * Slot 3(12:00~13:15) 
+                 * Slot 4(13:30~14:45) 
+                 * Slot 5(15:00~16:15) 
+                 * Slot 6(16:30~17:45) 
+                 * Slot 7(18:00~18:50) 
+                 * Slot 8(19:00~19:50) 
+                 * Slot 9(20:00~20:50) 
+                 * Slot 10(21:00~21:50) 
+                 * Slot 11(22:00~22:50)
                - Whether user prefers consecutive classes (back-to-back vs spread out)
+               
+               Examples:
+               - 6교시 이후는 빼줘 → avoidTimeSlots=[6,7,8,9,10,11]
+               - 점심시간은 비워줘 → avoidTimeSlots=[3,4]
+               - 2교시가 좋아 → preferredTimeSlots=[2]
 
             4. **Course Type Priorities:**
                - Prioritize major required courses (전공필수)?
