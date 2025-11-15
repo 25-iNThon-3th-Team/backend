@@ -46,6 +46,7 @@ data class UserCreateRequest(
 )
 
 data class UserUpdateRequest(
+    val username: String? = null,
     val grade: Short? = null,
     val semester: Short? = null,
     val majorCode: String? = null,

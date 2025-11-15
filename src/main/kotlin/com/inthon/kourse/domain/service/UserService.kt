@@ -69,6 +69,7 @@ class UserService(
             ?: throw NoSuchElementException("User not found with id: $id")
 
         user.apply {
+            username = request.username ?: user.username
             grade = request.grade ?: user.grade
             semester = request.semester ?: user.semester
             majorCode = request.majorCode ?: user.majorCode
