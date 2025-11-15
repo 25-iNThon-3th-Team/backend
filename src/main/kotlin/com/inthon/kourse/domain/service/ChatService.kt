@@ -24,12 +24,12 @@ class ChatService(
     fun getChatRoomById(roomId: Long): ChatRoomView {
         val room = chatRoomRepository.findByIdOrNull(roomId)
             ?: throw NoSuchElementException("Chat room not found with id: $roomId")
-        return toChatRoomView(room)
+        return toChatRoomView(room, -1)
     }
 
     fun getChatRoomsByUserId(userId: Long): List<ChatRoomView> {
         return chatRoomRepository.findBySenderIdOrderByLastMessageAtDesc(userId)
-            .map { toChatRoomView(it) }
+            .map { toChatRoomView(it, userId) }
     }
 
     @Transactional
@@ -40,7 +40,7 @@ class ChatService(
 
         val existingRoom = chatRoomRepository.findByTwoUsers(senderId, retrieverId)
         if (existingRoom != null) {
-            return toChatRoomView(existingRoom)
+            return toChatRoomView(existingRoom, senderId)
         }
 
         val senderUser = userRepository.findByIdOrNull(senderId) ?: throw NoSuchElementException("No sender found with id: $retrieverId")
@@ -53,7 +53,7 @@ class ChatService(
         )
 
         val savedRoom = chatRoomRepository.save(newRoom)
-        return toChatRoomView(savedRoom)
+        return toChatRoomView(savedRoom, senderId)
     }
 
     fun getMessages(roomId: Long, userId: Long): List<ChatMessageView> {
@@ -143,14 +143,14 @@ class ChatService(
         chatRoomRepository.deleteById(roomId)
     }
 
-    private fun toChatRoomView(room: ChatRoom): ChatRoomView {
+    private fun toChatRoomView(room: ChatRoom, userId: Long): ChatRoomView {
 
         // Get last message
         val messages = chatMessageRepository.findByRoomOrderBySentAtAsc(room)
         val lastMessage = messages.lastOrNull()
 
         // Count unread messages from the other user
-        val unreadCount = chatMessageRepository.countByRoomAndIsReadFalse(room)
+        val unreadCount = chatMessageRepository.countByRoomAndIsReadFalseAndSenderIdNot(room, userId)
 
         return ChatRoomView(
             id = room.id,

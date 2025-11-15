@@ -22,5 +22,5 @@ interface ChatMessageRepository : JpaRepository<ChatMessage, Long> {
     @Query("UPDATE ChatMessage cm SET cm.isRead = true WHERE cm.room = :room AND cm.sender.id != :userId AND cm.isRead = false")
     fun markMessagesAsRead(@Param("room") room: ChatRoom, @Param("userId") userId: Long): Int
 
-    fun countByRoomAndIsReadFalse(room: ChatRoom): Long
+    fun countByRoomAndIsReadFalseAndSenderIdNot(room: ChatRoom, senderId: Long): Long
 }
