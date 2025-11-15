@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.entity
 
+import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.PrimaryKeyEntity
+import io.hypersistence.tsid.TSID
 import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.*
 import org.hibernate.annotations.Type
@@ -24,4 +26,4 @@ data class Class(
 
     @Column(name = "total_seats")
     val totalSeats: Int = 50
-) : PrimaryKeyEntity<Long>(0L)
+) : BaseEntity()

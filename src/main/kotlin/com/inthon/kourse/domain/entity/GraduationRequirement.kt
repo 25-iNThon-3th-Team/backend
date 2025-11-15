@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.entity
 
+import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.PrimaryKeyEntity
+import io.hypersistence.tsid.TSID
 import jakarta.persistence.*
 
 @Entity
@@ -23,4 +25,4 @@ data class GraduationRequirement(
 
     @Column(name = "required_credits", nullable = false)
     val requiredCredits: Int
-) : PrimaryKeyEntity<Long>(0L)
+) : BaseEntity()

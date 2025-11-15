@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.entity
 
+import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.PrimaryKeyEntity
+import io.hypersistence.tsid.TSID
 import jakarta.persistence.*
 
 @Entity
@@ -15,4 +17,4 @@ data class Track(
 
     @Column(columnDefinition = "TEXT")
     val description: String? = null
-) : PrimaryKeyEntity<Long>(0L)
+) : BaseEntity()

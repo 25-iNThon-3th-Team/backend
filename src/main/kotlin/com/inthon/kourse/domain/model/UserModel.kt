@@ -1,10 +1,13 @@
 package com.inthon.kourse.domain.model
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import java.time.LocalDateTime
 import java.util.UUID
 
 data class UserView(
-    val id: UUID,
+    @JsonSerialize(using= ToStringSerializer::class)
+    val id: Long,
     val username: String,
     val enabled: Boolean,
     val roles: List<String>,

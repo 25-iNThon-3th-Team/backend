@@ -45,7 +45,7 @@ class UserService(
     }
 
     @Transactional(readOnly = true)
-    fun getUserById(id: UUID): UserView {
+    fun getUserById(id: Long): UserView {
         val user = userRepository.findByIdOrNull(id)
             ?: throw NoSuchElementException("User not found with id: $id")
         return toUserView(user)
@@ -63,7 +63,7 @@ class UserService(
         return userRepository.findAll().map { toUserView(it) }
     }
 
-    fun updateUser(id: UUID, request: UserUpdateRequest): UserView {
+    fun updateUser(id: Long, request: UserUpdateRequest): UserView {
         val user = userRepository.findByIdOrNull(id)
             ?: throw NoSuchElementException("User not found with id: $id")
 
@@ -84,7 +84,7 @@ class UserService(
         return toUserView(savedUser)
     }
 
-    fun deleteUser(id: UUID) {
+    fun deleteUser(id: Long) {
         if (!userRepository.existsById(id)) {
             throw NoSuchElementException("User not found with id: $id")
         }

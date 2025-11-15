@@ -1,8 +1,11 @@
 package com.inthon.kourse.domain.model
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import java.math.BigDecimal
 
 data class CourseView(
+    @JsonSerialize(using= ToStringSerializer::class)
     val id: Long,
     val courseCode: String,
     val name: String,
@@ -17,6 +20,7 @@ data class CourseView(
 data class CourseCreateRequest(
     val courseCode: String,
     val name: String,
+    @JsonSerialize(using= ToStringSerializer::class)
     val majorId: Long?,
     val creditType: String,
     val credits: Short = 3,
@@ -27,6 +31,7 @@ data class CourseCreateRequest(
 
 data class CourseUpdateRequest(
     val name: String? = null,
+    @JsonSerialize(using= ToStringSerializer::class)
     val majorId: Long? = null,
     val creditType: String? = null,
     val credits: Short? = null,

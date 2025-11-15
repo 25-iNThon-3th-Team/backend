@@ -1,5 +1,8 @@
 package com.inthon.kourse.domain.model
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
+
 data class ScheduleSlot(
     val day: String,
     val start: String,
@@ -8,6 +11,7 @@ data class ScheduleSlot(
 )
 
 data class ClassView(
+    @JsonSerialize(using= ToStringSerializer::class)
     val id: Long,
     val course: CourseView,
     val classCode: String,
@@ -17,6 +21,7 @@ data class ClassView(
 )
 
 data class ClassCreateRequest(
+    @JsonSerialize(using= ToStringSerializer::class)
     val courseId: Long,
     val classCode: String = "01",
     val professorName: String? = null,

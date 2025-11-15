@@ -48,7 +48,7 @@ class LoginController(
             ResponseEntity.ok(
                 mapOf(
                     "message" to "Successfully logged in", "id" to
-                            (authentication.principal as CustomUserDetails).getUser().id
+                            (authentication.principal as CustomUserDetails).getUser().id.toString()
                 )
             )
         } catch (e: BadCredentialsException) {

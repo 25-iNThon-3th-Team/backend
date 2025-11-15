@@ -1,6 +1,8 @@
 package com.inthon.kourse.domain.entity
 
+import com.inthon.kourse.common.entity.BaseEntity
 import com.inthon.kourse.common.entity.PrimaryKeyEntity
+import io.hypersistence.tsid.TSID
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
@@ -13,4 +15,4 @@ data class Major(
 
     @Column(nullable = false, length = 255)
     val name: String
-) : PrimaryKeyEntity<Long>(0L)
+) : BaseEntity()
