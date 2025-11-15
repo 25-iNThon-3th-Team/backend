@@ -63,24 +63,25 @@ class UserService(
         return userRepository.findAll().map { toUserView(it) }
     }
 
+    @Transactional
     fun updateUser(id: Long, request: UserUpdateRequest): UserView {
         val user = userRepository.findByIdOrNull(id)
             ?: throw NoSuchElementException("User not found with id: $id")
 
-        val updatedUser = user.copy(
-            grade = request.grade ?: user.grade,
-            semester = request.semester ?: user.semester,
-            majorCode = request.majorCode ?: user.majorCode,
-            creditsMajorRequired = request.creditsMajorRequired ?: user.creditsMajorRequired,
-            creditsMajorElective = request.creditsMajorElective ?: user.creditsMajorElective,
-            creditsGeneral = request.creditsGeneral ?: user.creditsGeneral,
-            preferredOffDays = request.preferredOffDays ?: user.preferredOffDays,
-            preferredTimeSlot = request.preferredTimeSlot ?: user.preferredTimeSlot,
-            maxTransferMinutes = request.maxTransferMinutes ?: user.maxTransferMinutes,
+        user.apply {
+            grade = request.grade ?: user.grade
+            semester = request.semester ?: user.semester
+            majorCode = request.majorCode ?: user.majorCode
+            creditsMajorRequired = request.creditsMajorRequired ?: user.creditsMajorRequired
+            creditsMajorElective = request.creditsMajorElective ?: user.creditsMajorElective
+            creditsGeneral = request.creditsGeneral ?: user.creditsGeneral
+            preferredOffDays = request.preferredOffDays ?: user.preferredOffDays
+            preferredTimeSlot = request.preferredTimeSlot ?: user.preferredTimeSlot
+            maxTransferMinutes = request.maxTransferMinutes ?: user.maxTransferMinutes
             priorityOrder = request.priorityOrder ?: user.priorityOrder
-        )
+        }
 
-        val savedUser = userRepository.save(updatedUser)
+        val savedUser = userRepository.save(user)
         return toUserView(savedUser)
     }
 

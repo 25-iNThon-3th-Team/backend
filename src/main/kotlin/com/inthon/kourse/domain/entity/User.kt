@@ -13,53 +13,53 @@ import org.hibernate.annotations.Type
 data class User(
 
     @Column(unique = true, nullable = false)
-    val username: String,
+    var username: String,
 
     @Column(nullable = false)
-    val password: String,
+    var password: String,
 
     @Column(nullable = false)
-    val enabled: Boolean = true,
+    var enabled: Boolean = true,
 
     @Type(JsonType::class)
     @Column(columnDefinition = "jsonb")
-    val roles: List<String> = listOf("USER"),
+    var roles: List<String> = listOf("USER"),
 
     // 1. Grade / Semester
     @Column(name = "grade")
-    val grade: Short? = null,
+    var grade: Short? = null,
 
     @Column(name = "semester")
-    val semester: Short? = null,
+    var semester: Short? = null,
 
     // 2. Major selection
     @Column(name = "major_code", length = 100)
-    val majorCode: String? = null,
+    var majorCode: String? = null,
 
     // 3. Current credits
     @Column(name = "credits_major_required", nullable = false)
-    val creditsMajorRequired: Int = 0,
+    var creditsMajorRequired: Int = 0,
 
     @Column(name = "credits_major_elective", nullable = false)
-    val creditsMajorElective: Int = 0,
+    var creditsMajorElective: Int = 0,
 
     @Column(name = "credits_general", nullable = false)
-    val creditsGeneral: Int = 0,
+    var creditsGeneral: Int = 0,
 
     // 4. Time constraints
     @Type(JsonType::class)
     @Column(name = "preferred_off_days", columnDefinition = "jsonb")
-    val preferredOffDays: List<String>? = null,
+    var preferredOffDays: List<String>? = null,
 
     @Column(name = "preferred_time_slot", length = 10)
-    val preferredTimeSlot: String = "NONE",
+    var preferredTimeSlot: String = "NONE",
 
     @Column(name = "max_transfer_minutes")
-    val maxTransferMinutes: Short = 20,
+    var maxTransferMinutes: Short = 20,
 
     // 5. Priority settings
     @Type(JsonType::class)
     @Column(name = "priority_order", columnDefinition = "jsonb")
-    val priorityOrder: List<String>? = null
+    var priorityOrder: List<String>? = null
 
 ) : TimestampedEntity()
