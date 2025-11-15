@@ -1,4 +1,6 @@
 -- Drop tables in reverse dependency order
+DROP TABLE IF EXISTS chat_message CASCADE;
+DROP TABLE IF EXISTS chat_room CASCADE;
 DROP TABLE IF EXISTS track_course CASCADE;
 DROP TABLE IF EXISTS track CASCADE;
 DROP TABLE IF EXISTS graduation_requirement CASCADE;
@@ -139,6 +141,27 @@ CREATE TABLE TimetableClass (
                                 PRIMARY KEY (timetable_id, class_id)
 );
 
+-- 8. ChatRoom (1-on-1 chat rooms)
+CREATE TABLE chat_room (
+    id BIGSERIAL PRIMARY KEY,
+    user1_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user2_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    last_message_at TIMESTAMP NOT NULL DEFAULT now(),
+    UNIQUE(user1_id, user2_id),
+    CHECK (user1_id < user2_id)
+);
+
+-- 9. ChatMessage (messages in chat rooms)
+CREATE TABLE chat_message (
+    id BIGSERIAL PRIMARY KEY,
+    room_id BIGINT NOT NULL REFERENCES chat_room(id) ON DELETE CASCADE,
+    sender_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    sent_at TIMESTAMP NOT NULL DEFAULT now(),
+    is_read BOOLEAN NOT NULL DEFAULT false
+);
+
 -- Indexes for performance
 CREATE INDEX idx_course_major ON course(major_id);
 CREATE INDEX idx_course_credit_type ON course(credit_type);
@@ -147,3 +170,7 @@ CREATE INDEX idx_graduation_requirement_major ON graduation_requirement(major_id
 CREATE INDEX idx_track_major ON track(major_id);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_users_major_code ON users(major_code);
+CREATE INDEX idx_chat_room_user1 ON chat_room(user1_id);
+CREATE INDEX idx_chat_room_user2 ON chat_room(user2_id);
+CREATE INDEX idx_chat_message_room ON chat_message(room_id);
+CREATE INDEX idx_chat_message_sent_at ON chat_message(sent_at);

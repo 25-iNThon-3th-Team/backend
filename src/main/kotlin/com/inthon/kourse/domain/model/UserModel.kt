@@ -25,6 +25,11 @@ data class UserView(
     val lastModifiedAt: LocalDateTime?
 )
 
+data class SimpleUserView(
+    val id: Long,
+    val username: String,
+)
+
 data class UserCreateRequest(
     val username: String,
     val password: String,

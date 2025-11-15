@@ -7,7 +7,9 @@ data class ScheduleSlot(
     val day: String,
     val start: String,
     val end: String,
-    val location: String
+    val location: String,
+    val startSlot: Int,
+    val endSlot: Int,
 )
 
 data class ClassView(
