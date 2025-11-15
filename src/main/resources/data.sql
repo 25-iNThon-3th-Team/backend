@@ -254,20 +254,20 @@ VALUES
 -- --- Timetable (시간표 마스터) 데이터 ---
 
 -- 1. 'newbie' (user_id=1)의 1학년 1학기 "월공강 추천안"
-MERGE INTO Timetable (id, user_id, name, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
-    (1, 1, 'AI 추천 1안 (월공강)', 1, 1, 15, true, NOW(), NOW());
+MERGE INTO Timetable (id, user_id, name, `years`, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
+    (1, 1, 'AI 추천 1안 (월공강)', '2025',1, 1, 15, true, NOW(), NOW());
 
 -- 2. 'junior_grad' (user_id=2)의 3학년 2학기 "졸업 최적화 (금공강)"
-MERGE INTO Timetable (id, user_id, name, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
-    (2, 2, '졸업 최적화 (금공강)', 3, 2, 18, true, NOW(), NOW());
+MERGE INTO Timetable (id, user_id, name, `years`, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
+    (2, 2, '졸업 최적화 (금공강)', '2025', 3, 2, 18, true, NOW(), NOW());
 
 -- 3. 'junior_grad' (user_id=2)의 3학년 2학기 "다른 금공강 조합"
-MERGE INTO Timetable (id, user_id, name, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
-    (3, 2, '금공강 도전', 3, 2, 18, false, NOW(), NOW());
+MERGE INTO Timetable (id, user_id, name, `years`, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
+    (3, 2, '금공강 도전', '2025',3, 2, 18, false, NOW(), NOW());
 
 -- 4. 'night_owl' (user_id=4)의 2학년 2학기 "오후 수업 위주 (월공강)"
-MERGE INTO Timetable (id, user_id, name, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
-    (4, 4, '오후 수업 위주', 2, 2, 15, true, NOW(), NOW());
+MERGE INTO Timetable (id, user_id, name, `years`, grade, semester, total_credits, is_active, created_at, updated_at) KEY(id) VALUES
+    (4, 4, '오후 수업 위주', '2025',2, 2, 15, true, NOW(), NOW());
 
 
 -- --- TimetableClass (시간표-수업 매핑) 데이터 ---

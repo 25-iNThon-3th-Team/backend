@@ -4,6 +4,7 @@ import com.inthon.kourse.domain.entity.Course
 import com.inthon.kourse.domain.entity.Major
 import com.inthon.kourse.domain.entity.Track
 import com.inthon.kourse.domain.entity.User
+import com.inthon.kourse.domain.model.ClassView
 import com.inthon.kourse.domain.model.CourseView
 import com.inthon.kourse.domain.model.MajorView
 import com.inthon.kourse.domain.model.SimpleUserView

@@ -9,8 +9,9 @@ data class TimetableView(
     val id: Long,
     val userId: String, // UUID as string
     val name: String,
+    val year: String,
     val grade: Short,
-    val semester: Short,
+    val semester: String,
     val totalCredits: Int,
     val isActive: Boolean,
     val classes: List<ClassView>,
@@ -26,15 +27,17 @@ data class TimetableSuggestionView(
 
 data class TimetableCreateRequest(
     val name: String,
+    val year: String,
     val grade: Short,
-    val semester: Short,
+    val semester: String,
     val classIds: List<Long> = emptyList()
 )
 
 data class TimetableUpdateRequest(
     val name: String? = null,
+    val year: String? = null,
     val grade: Short? = null,
-    val semester: Short? = null,
+    val semester: String? = null,
     val isActive: Boolean? = null,
     val classIds: List<Long>? = null
 )

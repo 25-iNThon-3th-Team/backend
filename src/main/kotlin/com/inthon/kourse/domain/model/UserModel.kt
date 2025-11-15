@@ -28,6 +28,8 @@ data class UserView(
 data class SimpleUserView(
     val id: Long,
     val username: String,
+    val majorCode: String?,
+    val grade: Short?,
 )
 
 data class UserCreateRequest(

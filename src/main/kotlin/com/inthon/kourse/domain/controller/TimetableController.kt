@@ -44,7 +44,7 @@ class TimetableController(
     fun getMyTimetablesBySemester(
         @AuthenticationPrincipal principal: CustomUserDetails,
         @RequestParam grade: Short,
-        @RequestParam semester: Short
+        @RequestParam semester: String
     ): ResponseEntity<List<TimetableView>> {
         val timetables = timetableService.getTimetablesByUserAndSemester(
             principal.getUser().id,

@@ -72,7 +72,7 @@ class ClassService(
             else -> "00:00" to "00:00" // 유효하지 않은 값 처리
         }
 
-    private fun toClassView(classEntity: Class): ClassView {
+    fun toClassView(classEntity: Class): ClassView {
         val scheduleSlots = classEntity.schedule?.map { slot ->
             ScheduleSlot(
                 day = slot["day"] ?: "",

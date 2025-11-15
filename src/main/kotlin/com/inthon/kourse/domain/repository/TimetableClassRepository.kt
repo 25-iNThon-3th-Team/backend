@@ -33,3 +33,4 @@ fun TimetableClassRepository.findCoursesByUser(userId: Long): List<Course> =
                 innerJoin(Class::course))
             .where(path(Timetable::user)(User::id).eq(userId))
     }.filterNotNull()
+

@@ -110,10 +110,10 @@ CREATE TABLE Timetable (
 
     -- "내 시간표", "최종본", "AI 추천 1안" 등
                            name VARCHAR(255) NOT NULL,
-
+                           years VARCHAR(6) NOT NULL,
     -- [추가됨] 이 시간표가 대상인 학년과 학기
                            grade SMALLINT NOT NULL, -- (e.g., 2 -> 2학년)
-                           semester SMALLINT NOT NULL, -- (e.g., 1 -> 1학기)
+                           semester VARCHAR(30) NOT NULL, -- (e.g., 1 -> 1학기)
 
     -- 이 시간표의 총 학점 (계산된 값)
                            total_credits INT NOT NULL DEFAULT 0,

@@ -14,4 +14,6 @@ class TimetableClassService(
     fun getTimetableClassByUserId(userId: Long) = timetableClassRepository.findAllByUser(userId)
 
     fun getTookCourseFromTable(userId: Long) = timetableClassRepository.findCoursesByUser(userId)
+
+    fun findAll() = timetableClassRepository.findAll()
 }

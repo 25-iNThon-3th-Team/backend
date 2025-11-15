@@ -42,7 +42,7 @@ class TimetableService(
         return timetable?.let { toTimetableView(it) }
     }
 
-    fun getTimetablesByUserAndSemester(userId: Long, grade: Short, semester: Short): List<TimetableView> {
+    fun getTimetablesByUserAndSemester(userId: Long, grade: Short, semester: String): List<TimetableView> {
         val user = userRepository.findByIdOrNull(userId)
             ?: throw NoSuchElementException("User not found with id: $userId")
         return timetableRepository.findByUserAndGradeAndSemester(user, grade, semester)
@@ -60,6 +60,7 @@ class TimetableService(
 
         val timetable = Timetable(
             user = user,
+            year = request.year,
             name = request.name,
             grade = request.grade,
             semester = request.semester,
@@ -158,6 +159,7 @@ class TimetableService(
         val updatedCredits = timetable.totalCredits + classEntity.course.credits.toInt()
         val updatedTimetable = Timetable(
             user = timetable.user,
+            year = timetable.year,
             name = timetable.name,
             grade = timetable.grade,
             semester = timetable.semester,
@@ -194,6 +196,7 @@ class TimetableService(
         val updatedCredits = timetable.totalCredits - classEntity.course.credits.toInt()
         val updatedTimetable = Timetable(
             user = timetable.user,
+            year = timetable.year,
             name = timetable.name,
             grade = timetable.grade,
             semester = timetable.semester,
@@ -228,6 +231,7 @@ class TimetableService(
             userId = timetable.user.id.toString(),
             name = timetable.name,
             grade = timetable.grade,
+            year = timetable.year,
             semester = timetable.semester,
             totalCredits = timetable.totalCredits,
             isActive = timetable.isActive,

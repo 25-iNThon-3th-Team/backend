@@ -21,11 +21,14 @@ data class Timetable(
     @Column(nullable = false, length = 255)
     var name: String,
 
+    @Column(nullable = false, name = "years")
+    var year: String,
+
     @Column(nullable = false)
     var grade: Short,
 
     @Column(nullable = false)
-    var semester: Short,
+    var semester: String,
 
     @Column(name = "total_credits", nullable = false)
     var totalCredits: Int = 0,
