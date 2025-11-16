@@ -22,7 +22,7 @@ data class UserSchedulePreference(
     val requiredCourses: List<ResolvedCourse> = emptyList(), // Resolved course requirements
     val avoidCourses: List<ResolvedCourse> = emptyList(), // Courses to avoid
     val scoringWeights: ScoringWeights = ScoringWeights(),
-    val additionalNotes: String = ""
+    val additionalNotes: String? = ""
 )
 
 data class ResolvedCourse(
