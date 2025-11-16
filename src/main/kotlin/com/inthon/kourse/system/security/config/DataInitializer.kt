@@ -16,38 +16,11 @@ class DataInitializer {
         passwordEncoder: BCryptPasswordEncoder
     ): CommandLineRunner {
         return CommandLineRunner {
-            // Create sample users if the database is empty
-            // Admin user
-            userRepository.save(
-                User(
-                    userId = "admin",
-                    username = "admin",
-                    password = passwordEncoder.encode("admin123"),
-                    enabled = true,
-                    roles = listOf("ROLE_USER", "ROLE_ADMIN")
-                )
-            )
-
-            // Regular user
-            userRepository.save(
-                User(
-                    userId = "user",
-                    username = "user",
-                    password = passwordEncoder.encode("user123"),
-                    enabled = true,
-                    roles = listOf("ROLE_USER")
-                )
-            )
             val users = userRepository.findAll()
             users.forEach {
                 it.password = passwordEncoder.encode("admin123")
                 userRepository.save(it)
             }
-            println("Sample users created:")
-            println("- admin/admin123 (ADMIN)")
-            println("- user/user123 (USER)")
-
-
         }
     }
 }
