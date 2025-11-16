@@ -18,7 +18,9 @@ data class ChatRoomView(
 data class ChatMessageView(
     @JsonSerialize(using = ToStringSerializer::class)
     val id: Long,
+    @JsonSerialize(using = ToStringSerializer::class)
     val roomId: Long,
+    @JsonSerialize(using = ToStringSerializer::class)
     val senderId: Long,
     val senderName: String,
     val content: String,

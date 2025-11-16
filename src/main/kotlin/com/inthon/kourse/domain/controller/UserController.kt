@@ -1,10 +1,13 @@
 package com.inthon.kourse.domain.controller
 
+import com.inthon.kourse.domain.model.PasswordChangeRequest
 import com.inthon.kourse.domain.model.UserUpdateRequest
 import com.inthon.kourse.domain.model.UserView
 import com.inthon.kourse.domain.service.UserService
 import com.inthon.kourse.system.security.model.CustomUserDetails
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.ResponseEntity
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 import java.util.UUID
@@ -77,5 +80,15 @@ class UserController(
         } catch (e: NoSuchElementException) {
             ResponseEntity.notFound().build()
         }
+    }
+
+    @PostMapping("/change-password")
+    fun changePassword(
+        @AuthenticationPrincipal principal: CustomUserDetails,
+        @RequestBody request: PasswordChangeRequest,
+        response: HttpServletResponse
+    ) {
+            userService.changePassword(principal.getUser().id, request.oldPassword, request.newPassword)
+            response.sendRedirect("/logout")
     }
 }

@@ -26,6 +26,7 @@ data class UserView(
 )
 
 data class SimpleUserView(
+    @JsonSerialize(using = ToStringSerializer::class)
     val id: Long,
     val username: String,
     val majorCode: String?,
@@ -60,4 +61,9 @@ data class UserUpdateRequest(
     val preferredTimeSlot: String? = null,
     val maxTransferMinutes: Short? = null,
     val priorityOrder: List<String>? = null
+)
+
+data class PasswordChangeRequest(
+    val oldPassword: String,
+    val newPassword: String,
 )

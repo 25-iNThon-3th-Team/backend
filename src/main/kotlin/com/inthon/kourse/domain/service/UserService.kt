@@ -6,6 +6,7 @@ import com.inthon.kourse.domain.model.UserUpdateRequest
 import com.inthon.kourse.domain.model.UserView
 import com.inthon.kourse.domain.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -61,6 +62,16 @@ class UserService(
     @Transactional(readOnly = true)
     fun getAllUsers(): List<UserView> {
         return userRepository.findAll().map { toUserView(it) }
+    }
+
+    @Transactional
+    fun changePassword(id: Long, oldPassword: String, newPassword: String)  {
+        val user = userRepository.findByIdOrNull(id)
+            ?: throw NoSuchElementException("User not found with id: $id")
+        if(!passwordEncoder.matches(oldPassword, user.password)) {
+            throw BadCredentialsException("Old password does not match the password")
+        }
+        user.password = passwordEncoder.encode(newPassword)
     }
 
     @Transactional
