@@ -1,3 +1,6 @@
 2025-11-16 11:51:43.254512+09:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TIMETABLE" already exists; SQL statement:
 CREATE TABLE Timetable ( id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, years VARCHAR(6) NOT NULL, grade SMALLINT NOT NULL, semester VARCHAR(30) NOT NULL, total_credits INT NOT NULL DEFAULT 0, is_active BOOLEAN NOT NULL DEFAULT false, created_at TIMESTAMP DEFAULT now(), updated_at TIMESTAMP DEFAULT now(), UNIQUE(user_id, name, grade, semester) ) [42101-232]
+2025-11-16 11:57:27.867967+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TIMETABLE" already exists; SQL statement:
+CREATE TABLE Timetable ( id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE, name VARCHAR(255) NOT NULL, years VARCHAR(6) NOT NULL, grade SMALLINT NOT NULL, semester VARCHAR(30) NOT NULL, total_credits INT NOT NULL DEFAULT 0, is_active BOOLEAN NOT NULL DEFAULT false, created_at TIMESTAMP DEFAULT now(), updated_at TIMESTAMP DEFAULT now(), UNIQUE(user_id, name, grade, semester) ) [42101-232]

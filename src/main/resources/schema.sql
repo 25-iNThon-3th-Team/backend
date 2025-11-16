@@ -1,5 +1,7 @@
 -- Drop tables in reverse dependency order
 DROP TABLE IF EXISTS chat_message CASCADE;
+DROP TABLE IF EXISTS Timetable CASCADE;
+DROP TABLE IF EXISTS Timetableclass CASCADE;
 DROP TABLE IF EXISTS chat_room CASCADE;
 DROP TABLE IF EXISTS track_course CASCADE;
 DROP TABLE IF EXISTS track CASCADE;
